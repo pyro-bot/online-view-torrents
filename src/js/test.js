@@ -1,14 +1,34 @@
-var parseTorrent = require('bencode-js');
-var $ = require('jquery');
-$.post({
+// var parseTorrent = require('bencode-js');
+import '../html/index.html';
+import '../manifest.json';
+import '../16x16.png';
+import parseTorrent from 'parse-torrent'
+import WebTorrent from 'webtorrent'
+import {get} from 'request'
+let client=new WebTorrent();
+get({
     url:'http://torrent9.ru/_ld/16/1601_Need_for_Speed-.torrent',
-    success:function (data) {
-    // console.log(data);
-    var torrent=parseTorrent.decode(data,'utf-8');
+    encoding:null,
+    gzip:true
+},(err,res,data)=>{
+    let torrent=parseTorrent(data);
     console.log(torrent);
-}})
-// var client = new WebTorrent();
-var infoHash = '4fb9f174ce95708a3f429702942a5a82f82db855';
+    client.add(torrent,(torrent)=>{
+        torrent.files.forEach(function(element) {
+            console.log(element);
+        }, this);
+    })
+});
+// $.post({
+//     url:'http://torrent9.ru/_ld/16/1601_Need_for_Speed-.torrent',
+//     success:function (data) {
+//     // console.log(data);
+//     client.add(data,(file)=>console.log(file));
+//     // var torrent=parseTorrent(String(data));
+//     // console.log(torrent);
+// }})
+// // var client = new WebTorrent();
+// var infoHash = '4fb9f174ce95708a3f429702942a5a82f82db855';
 // GM_xmlhttpRequest({
 //     method: "POST",
 //     url: "https://[domain1]/exmaple.php",

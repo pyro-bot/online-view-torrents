@@ -1,10 +1,10 @@
 {
     "manifest_version": 2,
-    "name": "Простой перевод",
+    "name": "Онлаин просмотр торрентов",
     "version": "1.0",
     "icons": {
-        "16": "16x16.png",
-        "48": "16x16.png"
+        "16": "img/16x16.png",
+        "48": "img/16x16.png"
     },
     "permissions": [
         "http://*/*",
@@ -22,7 +22,7 @@
     ],
     "browser_action": {
         "default_title": "Открыть переводчик",
-        "default_icon": "16x16.png",
+        "default_icon": "img/16x16.png",
         "default_popup": "html/index.html"
     }
 }
